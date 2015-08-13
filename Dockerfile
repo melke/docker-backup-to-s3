@@ -16,5 +16,8 @@ RUN chmod +x /sync.sh
 ADD tar.sh /tar.sh
 RUN chmod +x /tar.sh
 
+ENV TZ=Europe/Stockholm
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 ENTRYPOINT ["/start.sh"]
 CMD [""]

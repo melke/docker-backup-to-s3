@@ -13,6 +13,8 @@ echo "secret_key=$SECRET_KEY" >> /root/.s3cfg
 
 if [[ "$1" == 'no-cron' ]]; then
     exec /usr/bin/s3cmd sync "$DATA_PATH" "$S3_PATH"
+elif [[ "$1" == 'tar-no-cron' ]]; then
+    exec /tar.sh "$DATA_PATH" "$S3_PATH"
 elif [[ "$1" == 'tar' ]]; then
     echo "$CRON_SCHEDULE /tar.sh \"$DATA_PATH\" \"$S3_PATH\"" | crontab -
     exec cron -f
